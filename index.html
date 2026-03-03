@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chen Jinqi · CV</title>
+
+    <script>
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
+
+    <!-- 内联样式 - 完全基于原模板结构但移除对外部文件的依赖 -->
+    <style>
+        /* ==============================
+           基础重置与变量
+        ============================== */
+        :root {
+            --color-bg: #f5f9ff;
+            --color-surface: #ffffff;
+            --color-primary: #0a2a44;
+            --color-secondary: #1f5e9e;
+            --color-accent: #2b6ca3;
+            --color-text: #1e2f3d;
+            --color-text-light: #4a6380;
+            --color-border: #dae4f0;
+            --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--color-bg);
+            font-family: var(--font-base);
+            line-height: 1.6;
+            color: var(--color-text);
+            overflow-x: hidden;
+            padding: 2rem 1.5rem;
+        }
+
+        /* 页面容器 — 模仿原卡片的柔和感 */
+        .s-pagewrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--color-surface);
+            border-radius: 36px;
+            box-shadow: 0 30px 60px -20px rgba(0,30,50,0.2);
+            overflow: hidden;
+        }
+
+        /* 预加载器（隐藏） */
+        #preloader {
+            display: none;
+        }
+
+        /* ==============================
+           头部导航
+        ============================== */
+        .s-header {
+            padding: 1.2rem 2.5rem;
+            background: white;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .s-header__block {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-title a {
+            font-size: 1.9rem;
+            font-weight: 650;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .s-header__menu-toggle {
+            display: none;  /* 移动端菜单简化，保持干净 */
+        }
+
+        .s-header__nav-wrap {
+            margin-top: 1rem;
+        }
+
+        .s-header__nav ul {
+            display: flex;
+            gap: 2.8rem;
+            list-style: none;
+        }
+
+        .s-header__nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 520;
+            font-size: 1.1rem;
+            transition: 0.2s;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .s-header__nav a:hover,
+        .s-header__nav .current a {
+            color: var(--color-secondary);
+            border-bottom-color: var(--color-secondary);
+        }
+
+        .s-header__social {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin-top: 0.8rem;
+        }
+
+        .s-header__social svg {
+            width: 22px;
+            height: 22px;
+            fill: #4f6b8a;
+            transition: fill 0.2s;
+        }
+
+        .s-header__social a:hover svg {
+            fill: var(--color-secondary);
+        }
+
+        .u-screen-reader-text {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+        }
+
+        /* ==============================
+           Intro 部分 + 照片占位 (修改：去掉圆框，放大尺寸)
+        ============================== */
+        .s-intro {
+            padding: 2.5rem 2.5rem 1.5rem;
+            background: linear-gradient(135deg, #f1f7fe 0%, #ffffff 70%);
+        }
+
+        .s-intro__content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .s-intro__text {
+            flex: 2;
+            min-width: 320px;
+        }
+
+        .s-intro__text-huge {
+            font-size: clamp(2.8rem, 8vw, 4.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
+        }
+
+        .s-intro__text h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--color-secondary);
+            margin-bottom: 1.2rem;
+        }
+
+        /* 照片占位 - 修改为矩形框，更大尺寸，无圆角 */
+        .photo-placeholder {
+            flex: 0 0 260px;          /* 固定宽度260px */
+            width: 260px;
+            height: 320px;             /* 高度320px，更适合个人照片 */
+            background: #d0e0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #1a405e;
+            border: 5px solid white;
+            box-shadow: 0 20px 30px -10px rgba(0,60,100,0.3);
+            font-size: 1rem;
+            text-align: center;
+            margin: 0 auto;
+            border-radius: 16px;        /* 轻微圆角，但不是圆形，如果需要直角可改为0 */
+            overflow: hidden;           /* 确保图片填充时不溢出 */
+        }
+
+        .photo-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+
+        .photo-placeholder span {
+            background: rgba(255,255,255,0.7);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #0b2d4a;
+        }
+
+        /* 联系方式横条 */
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.2rem;
+            margin-top: 1.5rem;
+            padding: 1.2rem 0 0.5rem;
+            border-top: 1px dashed var(--color-border);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            background: #f0f6fd;
+            padding: 0.4rem 1.2rem 0.4rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        .contact-item i {
+            color: var(--color-secondary);
+            width: 1.8rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* ==============================
+           About 部分
+        ============================== */
+        .s-about {
+            padding: 2.5rem;
+        }
+
+        .text-pretitle {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--color-secondary);
+            margin-bottom: 0.6rem;
+        }
+
+        .attention-getter {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: var(--color-primary);
+            font-weight: 360;
+            max-width: 1000px;
+        }
+
+        .text-huge-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin: 1rem 0 2rem;
+            line-height: 1.3;
+        }
+
+        .s-about__career-header {
+            margin: 2.5rem 0 1.8rem;
+        }
+
+        .row {
+            margin-bottom: 2rem;
+        }
+
+        /* 双栏时间轴 */
+        .s-about__timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .text-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline__block {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2.8rem;
+            border-left: 2px solid var(--color-border);
+        }
+
+        .timeline__bullet {
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+            border: 4px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline__header {
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline__title {
+            font-size: 1.4rem;
+            font-weight: 650;
+            color: var(--color-primary);
+            line-height: 1.2;
+        }
+
+        .timeline__meta {
+            font-size: 1.05rem;
+            color: var(--color-accent);
+            font-weight: 530;
+            margin: 0.2rem 0;
+        }
+
+        .timeline__timeframe {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            background: #e6f0fa;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            margin: 0.6rem 0;
+        }
+
+        .timeline__desc {
+            color: var(--color-text);
+            font-size: 0.98rem;
+        }
+
+        .timeline__desc ul {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .timeline__desc li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            gap: 10px;
+        }
+
+        .timeline__desc li i {
+            color: var(--color-secondary);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            min-width: 1.2rem;
+        }
+
+        .skill-bars {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin-top: 1.2rem;
+        }
+
+        .skill-bars li {
+            background: #e2edf9;
+            padding: 0.5rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 530;
+            color: #103a60;
+            font-size: 1rem;
+            border: 1px solid #c7ddf5;
+        }
+
+        /* 项目展示区 (works) */
+        .s-works {
+            padding: 2.5rem;
+            background: #fafdff;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .folio-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .folio-item {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -12px rgba(0,45,80,0.15);
+            padding: 1.8rem;
+            border: 1px solid #eaf1fa;
+        }
+
+        .folio-item__thumb {
+            background: #deeaf6;
+            height: 160px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2b4f73;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 450;
+        }
+
+        .folio-item__info h4 {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .folio-item__meta {
+            display: flex;
+            justify-content: space-between;
+            color: #3f6990;
+        }
+
+        .project-link {
+            text-decoration: none;
+            border-bottom: 1px dotted;
+        }
+
+        /* 隐藏原 testimonials */
+        .testimonials {
+            display: none;
+        }
+
+        /* ==============================
+           页脚
+        ============================== */
+        .s-footer {
+            padding: 2.5rem;
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .s-footer .text-pretitle {
+            color: #b3d5ff;
+        }
+
+        .s-footer .text-huge-title {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .s-footer__buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .btn {
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn--primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .btn--stroke {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+
+        .btn--primary:hover {
+            background: #e0f0ff;
+        }
+        .btn--stroke:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .s-footer__contact-info ul,
+        .s-footer__social ul {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .s-footer__contact-info a,
+        .s-footer__social a {
+            color: #c3d9f5;
+            text-decoration: none;
+            line-height: 2;
+            font-size: 1.1rem;
+        }
+
+        .ss-copyright {
+            color: #aac0da;
+            margin-top: 2.5rem;
+            border-top: 1px solid #2f5580;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ss-go-top a {
+            color: white;
+            background: #1d4c7a;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .s-about__timeline {
+                grid-template-columns: 1fr;
+            }
+            .folio-list {
+                grid-template-columns: 1fr;
+            }
+            .s-intro__content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .contact-bar {
+                justify-content: center;
+            }
+            .s-header__nav ul {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+            .photo-placeholder {
+                flex: 0 0 220px;
+                width: 220px;
+                height: 280px;
+            }
+        }
+
+        /* 隐藏photoSwipe背景 */
+        .pswp {
+            display: none;
+        }
+    </style>
+
+    <!-- Font Awesome (用于图标) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- favicon 占位 -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+</head>
+
+<body id="top">
+
+    <!-- preloader (隐藏) -->
+    <div id="preloader"></div>
+
+    <!-- page wrap -->
+    <div id="page" class="s-pagewrap">
+
+        <!-- header -->
+        <header id="masthead" class="s-header">
+            <div class="s-header__block">
+                <div class="s-header__branding">
+                    <p class="site-title"><a href="index.html" rel="home">Jessie Chan</a></p>
+                </div>
+                <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+            </div>
+
+            <div class="row s-header__nav-wrap">
+                <nav class="s-header__nav">
+                    <ul>
+                        <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
+                        <li><a href="#about" class="smoothscroll">About</a></li>
+                        <li><a href="#works" class="smoothscroll">Projects</a></li>
+                        <li><a href="#colophon" class="smoothscroll">Contact</a></li>
+                    </ul>
+                </nav>
+                <ul class="s-header__social">
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i><span class="u-screen-reader-text">LinkedIn</span></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i><span class="u-screen-reader-text">X</span></a></li>
+                    <li><a href="#"><i class="fab fa-github"></i><span class="u-screen-reader-text">GitHub</span></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- intro 部分 + 照片位置 (修改为矩形大图) -->
+        <section id="intro" class="s-intro">
+            <div class="row">
+                <div class="column lg-12 s-intro__content">
+                   <div class="photo-placeholder">
+    <img src="chenjinqi.jpg" alt="陈锦琪" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+</div>
+                    <div class="s-intro__text">
+                        <h1 class="s-intro__text-huge">Jessie Chan</h1>
+                        <h3>MSc in AI & Digital Media · Journalism</h3>
+                        <!-- 联系信息条 -->
+                        <div class="contact-bar">
+                            <span class="contact-item"><i class="fas fa-phone-alt"></i> +86 13411933136</span>
+                            <span class="contact-item"><i class="fas fa-phone-alt"></i> +852 64874351</span>
+                            <span class="contact-item"><i class="fas fa-envelope"></i> chenjinqi2025@163.com</span>
+                            <span class="contact-item"><i class="fas fa-calendar"></i> Dec 2002</span>
+                            <span class="contact-item"><i class="fas fa-map-marker-alt"></i> Hong Kong / Shenzhen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- about 部分 (更新为指定的英文内容) -->
+        <section id="about" class="s-about">
+            <div class="s-about__block s-about__intro">
+                <div class="row">
+                    <div class="column lg-12">
+                        <h2 class="text-pretitle">About Me</h2>
+                        <p class="attention-getter">
+                            Master's candidate in AI and Digital Media at Hong Kong Baptist University (class of 2025), with strong expertise in media relations analysis, data-driven strategy, and event content development.<br><br>
+                            Gained multiple internship experiences in investor relations, financial PR, and high-end event execution. Dedicated to applying AI and big data technologies to investor relations, financial communications, and business development.<br><br>
+                            Familiar with public sentiment monitoring of A-share and Hong Kong-listed companies, financial performance writing, and media relationship management. Skilled in building IP from scratch and driving user growth.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="s-about__block s-about__career">
+                <div class="row s-about__career-header">
+                    <div class="column lg-12">
+                        <h2 class="text-pretitle">Resume</h2>
+                        <p class="text-huge-title">Education · Experience · Skills</p>
+                    </div>
+                </div>
+
+                <!-- 双栏时间轴: 左侧教育+实习，右侧项目+技能 -->
+                <div class="row s-about__timeline">
+                    <!-- 左侧栏 -->
+                    <div class="column lg-6 stack-on-900 s-about__timeline-section">
+                        <h2 class="text-subtitle">Education</h2>
+                        <div class="timeline">
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Hong Kong Baptist University</h4>
+                                    <h5 class="timeline__meta">MSc in Artificial Intelligence and Digital Media</h5>
+                                    <p class="timeline__timeframe">Sep 2025 – Jul 2026</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    Key courses: Applications of AI and Big Data in Financial Market Analysis, Big Data Management and Analysis, etc.
+                                </div>
+                            </div>
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Shantou University</h4>
+                                    <h5 class="timeline__meta">Bachelor's in Journalism (National First‑Class Program)</h5>
+                                    <p class="timeline__timeframe">Oct 2021 – Jun 2025</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    Key courses: News Commentary, Public Relations Case Studies, Introduction to Communication, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="text-subtitle" style="margin-top: 2.5rem;">Internship</h2>
+                        <div class="timeline">
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Everbloom</h4>
+                                    <h5 class="timeline__meta">Investor Relations Project Assistant</h5>
+                                    <p class="timeline__timeframe">Jul 2024 – Sep 2024</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    <ul>
+                                        <li><i class="fas fa-angle-right"></i> Public opinion monitoring: Hithium, Skyworth Digital; daily/weekly reports.</li>
+                                        <li><i class="fas fa-angle-right"></i> Article writing: semi‑annual performance articles for Hongta Securities Co., Ltd., Kaiser (China) Culture Co., Ltd., and Ninestar Corporation.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Strategic Alliance Financial Consulting Group Limited</h4>
+                                    <h5 class="timeline__meta">Financial PR Assistant</h5>
+                                    <p class="timeline__timeframe">Jul 2023 – Sep 2023</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    <ul>
+                                        <li><i class="fas fa-angle-right"></i> Media relations: Shoucheng Holdings Limited and China Leon Inspection Holding Limited (HK listed).</li>
+                                        <li><i class="fas fa-angle-right"></i> Event management: interim board meetings follow‑up.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧栏：项目经历 + 技能证书 -->
+                    <div class="column lg-6 stack-on-900 s-about__timeline-section">
+                        <h2 class="text-subtitle">Project Experience</h2>
+                        <div class="timeline">
+                            <div class="timeline__block">
+                                <div class="timeline__bullet"></div>
+                                <div class="timeline__header">
+                                    <h4 class="timeline__title">Hong Kong Globalization Center</h4>
+                                    <h5 class="timeline__meta">Marketing Department Business Assistant</h5>
+                                    <p class="timeline__timeframe">Jul 2025 – Jan 2026</p>
+                                </div>
+                                <div class="timeline__desc">
+                                    <strong>Market Expansion</strong>
+                                    <ul>
+                                        <li><i class="fas fa-angle-right"></i> Market research & opportunity exploration in Shenzhen.</li>
+                                        <li><i class="fas fa-angle-right"></i> 10+ high‑level business negotiations; facilitated cooperation proposals.</li>
+                                        <li><i class="fas fa-angle-right"></i> IP incubation "Zhenhai Talks": 0→20k followers in 3 months, 500k+ views.</li>
+                                    </ul>
+                                    <strong>Project Execution</strong>
+                                    <ul>
+                                        <li><i class="fas fa-angle-right"></i> "Zhenhai Club" offline events: 5+ forums & private sessions.</li>
+                                        <li><i class="fas fa-angle-right"></i> Led "Zhenhai Club x Hong Rong Yuan" pilot → monthly recurring brand event.</li>
+                                        <li><i class="fas fa-angle-right"></i> Guest invitation for 4th Global Digital Trade Expo (Shenzhen/Hangzhou).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="text-subtitle" style="margin-top: 2rem;">Skills & Certifications</h2>
+                        <ul class="skill-bars">
+                            <li>SQL</li>
+                            <li>Python</li>
+                            <li>PS / CapCut</li>
+                            <li>Office Suite</li>
+                            <li>IELTS 6.0</li>
+                            <li>Mandarin (fluent)</li>
+                            <li>Cantonese (basic)</li>
+                        </ul>
+                        <div style="margin-top: 1.2rem; background: #eaf2fb; padding: 1rem 1.5rem; border-radius: 40px;">
+                            <i class="fas fa-certificate" style="color: var(--color-secondary);"></i> Chinese Academy of Sciences Psychological Counselor Certificate
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- works 部分 — 展示重点项目的卡片 (根据要求完全更新) -->
+        <section id="works" class="s-works">
+            <div class="row">
+                <div class="column lg-12">
+                    <h2 class="text-pretitle">Featured projects</h2>
+                    <p class="text-huge-title">Key initiatives I contributed to</p>
+                </div>
+            </div>
+
+            <div class="row folio-list">
+                <!-- 卡片1: Financial IP 'Zhenhai Talks' -->
+                <div class="column">
+                    <div class="folio-item">
+                        <div class="folio-item__thumb">
+                            <i class="fas fa-chart-line" style="font-size: 3rem; opacity: 0.6;"></i> <span style="margin-left: 10px;">Zhenhai Talks</span>
+                        </div>
+                        <div class="folio-item__info">
+                            <h4>Financial IP 'Zhenhai Talks'</h4>
+                            <div class="folio-item__meta">
+                                <span>Content strategy · 0→20k followers</span>
+                                <span class="project-link">3 months</span>
+                            </div>
+                            <p style="margin-top: 0.8rem;">As a core planning member, fully participated in creating the financial IP 'Zhenhai Talks' from positioning and content planning to multi-platform operations. Responsible for topic planning, content review, and release strategies, achieving a growth of online followers from 0 to 20,000 within 3 months, with cumulative video views exceeding 500,000, significantly enhancing Dr. Qiu Zhenhai's influence and brand recognition in the field of financial knowledge.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 卡片2: Entrepreneur Circle Operations -->
+                <div class="column">
+                    <div class="folio-item">
+                        <div class="folio-item__thumb">
+                            <i class="fas fa-users" style="font-size: 3rem; opacity: 0.6;"></i> <span>Circle Ops</span>
+                        </div>
+                        <div class="folio-item__info">
+                            <h4>Entrepreneur Circle Operations</h4>
+                            <div class="folio-item__meta">
+                                <span>Zhenhai Club x Hongrongyuan</span>
+                                <span>closed-loop system</span>
+                            </div>
+                            <p>Led the operation of the high-end circle project "Zhenhai Club × Hongrongyuan Entrepreneurs Information Private Sharing Session." Starting from the first pilot, established a complete closed-loop service system including precise invitations, on-site services, post-event follow-up, and relationship maintenance, successfully iterating the pilot event into a monthly series of branded activities, enhancing the stickiness and repurchase willingness of entrepreneur users.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 卡片3: The 4th Global Digital Trade Expo -->
+                <div class="column">
+                    <div class="folio-item">
+                        <div class="folio-item__thumb">
+                            <i class="fas fa-calendar-check" style="font-size: 3rem;"></i>
+                        </div>
+                        <div class="folio-item__info">
+                            <h4>The 4th Global Digital Trade Expo</h4>
+                            <div class="folio-item__meta">
+                                <span>Guest invitation</span>
+                                <span>Shenzhen · Hangzhou</span>
+                            </div>
+                            <p>Assisted in planning and executing guest invitations for the 4th Global Digital Trade Expo, successfully coordinating several industry leaders and business decision-makers from Shenzhen and Hangzhou to attend.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 卡片4: Investor Relations -->
+                <div class="column">
+                    <div class="folio-item">
+                        <div class="folio-item__thumb">
+                            <i class="fas fa-file-alt" style="font-size: 3rem;"></i>
+                        </div>
+                        <div class="folio-item__info">
+                            <h4>Investor Relations</h4>
+                            <div class="folio-item__meta">
+                                <span>Everbloom · SAFCG</span>
+                            </div>
+                            <p>Public opinion data monitoring, publicity strategy development, daily/weekly reports, writing performance articles for A-share/H-share listed companies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer 联系方式 (增加+852号码) -->
+        <footer id="colophon" class="s-footer">
+            <div class="row s-footer__contact-header">
+                <div class="column lg-12">
+                    <h2 class="text-pretitle">Get in touch</h2>
+                    <p class="text-huge-title">Feel free to reach out — let's connect.</p>
+                </div>
+            </div>
+
+            <div class="row s-footer__contact-content">
+                <div class="column lg-5 md-6 stack-on-900 left-block">
+                    <p style="color: #d4e4ff;">I'm open to opportunities in AI-driven communication, investor relations, and content strategy.</p>    
+                </div>
+                <div class="column lg-4 md-5 stack-on-900 right-block">
+                    <div class="s-footer__contact-info">
+                        <h2 class="text-subtitle" style="color:white;">Contact</h2>
+                        <ul class="link-list">
+                            <li><a href="mailto:chenjinqi2025@163.com">chenjinqi2025@163.com</a></li>
+                            <li><a href="tel:+8613411933136">+86 13411933136</a></li>
+                            <li><a href="tel:+85264874351">+852 64874351</a></li>
+                        </ul>
+                    
+            </div>
+
+            <div class="row s-footer__bottom">
+                <div class="column ss-copyright">
+                    <span>© 2025 Chen Jinqi</span>
+                    <span>Built from a template · All content based on resume</span>
+                </div>
+                <div class="ss-go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#top">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: white;"><path d="M6 4h12v2H6zm5 10v6h2v-6h5l-6-6-6 6z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div> <!-- end s-pagewrap -->
+
+    <!-- 隐藏的 photoswipe (不再使用) -->
+    <div aria-hidden="true" class="pswp"></div>
+
+    <!-- 平滑滚动简单处理 -->
+    <script>
+        document.querySelectorAll('.smoothscroll').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
